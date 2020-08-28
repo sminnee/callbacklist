@@ -120,5 +120,4 @@ class CallbackLisTest extends TestCase
 
         $this->assertEquals([$c], $list->getAll());
     }
-
 }
