@@ -35,7 +35,7 @@ $list->clear();
 $list->add(function($greeting) { "$greeting, world!"; }, 'greeter');
 
 // And then remove by that name
-$list->call('greeter');
+$list->remove('greeter');
 ```
 
 And you can inspect the content of the list:
