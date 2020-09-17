@@ -95,5 +95,4 @@ class CallbackList
     {
         return call_user_func_array([$this, 'call'], $args);
     }
-
 }

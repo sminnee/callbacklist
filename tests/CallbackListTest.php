@@ -87,8 +87,8 @@ class CallbackLisTest extends TestCase
         $log = [];
         $list('Hello', '!');
         $this->assertEquals(['Hello, a!', 'Hello, b!', 'Hello, c!'], $log);
-
     }
+
     public function testGetAll()
     {
         $a = function () {
@@ -166,7 +166,9 @@ class CallbackLisTest extends TestCase
 
         $this->assertTrue(is_callable($list));
 
-        $test = function (callable $x) { return $x(); };
+        $test = function (callable $x) {
+            return $x();
+        };
 
         $this->assertEquals($list(), $test($list));
     }
