@@ -87,4 +87,13 @@ class CallbackList
         }
         return $results;
     }
+
+    /**
+     * Treat CallbackList as a callable
+     */
+    public function __invoke(...$args): array
+    {
+        return call_user_func_array([$this, 'call'], $args);
+    }
+
 }

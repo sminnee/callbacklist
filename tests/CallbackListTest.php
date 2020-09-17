@@ -48,6 +48,12 @@ class CallbackLisTest extends TestCase
             [ 'a', 2, ['c'] ],
             $list->call()
         );
+
+        // Check invoke syntax
+        $this->assertEquals(
+            [ 'a', 2, ['c'] ],
+            $list()
+        );
     }
 
     public function testCallWithArgs()
@@ -72,6 +78,16 @@ class CallbackLisTest extends TestCase
         $log = [];
         $list->call('Hello', '!');
         $this->assertEquals(['Hello, a!', 'Hello, b!', 'Hello, c!'], $log);
+
+        // Check invoke syntax
+        $log = [];
+        $list('Hello');
+        $this->assertEquals(['Hello, a', 'Hello, b', 'Hello, c'], $log);
+
+        $log = [];
+        $list('Hello', '!');
+        $this->assertEquals(['Hello, a!', 'Hello, b!', 'Hello, c!'], $log);
+
     }
     public function testGetAll()
     {
@@ -142,5 +158,22 @@ class CallbackLisTest extends TestCase
         $list->add($c);
 
         $this->assertEquals([$c], $list->getAll());
+    }
+
+    public function testCallbackIsACallable()
+    {
+        $list = new CallbackList();
+
+        $this->assertTrue(is_callable($list));
+
+        $test = function (callable $x) { return $x(); };
+
+        $this->assertEquals($list(), $test($list));
+    }
+
+    public function testEmptyList()
+    {
+        $list = new CallbackList();
+        $this->assertEquals([], $list());
     }
 }
