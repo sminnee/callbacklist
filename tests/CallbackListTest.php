@@ -7,24 +7,47 @@ use Sminnee\CallbackList\CallbackList;
 
 class CallbackLisTest extends TestCase
 {
-    public function testCall()
+    public function testCallWithoutReturnVales()
     {
         $list = new CallbackList();
 
         $log = [];
 
-        $list->add(function () use (&$log) {
+        // Confirming that voids are allowed even though returns are collected
+        $list->add(function () use (&$log): void {
             $log[] = 'a';
         });
-        $list->add(function () use (&$log) {
+        $list->add(function () use (&$log): void {
             $log[] = 'b';
         });
-        $list->add(function () use (&$log) {
+        $list->add(function () use (&$log): void {
             $log[] = 'c';
         });
 
-        $list->call();
+        // When there are no returns form the callbacks, an array of nulls is returned
+        $this->assertEquals([null, null, null], $list->call());
         $this->assertEquals(['a', 'b', 'c'], $log);
+    }
+
+    public function testCallReturnValues()
+    {
+        $list = new CallbackList();
+
+        $list->add(function () use (&$log) {
+            return 'a';
+        });
+        $list->add(function () use (&$log) {
+            return 2;
+        });
+        $list->add(function () use (&$log) {
+            return ['c'];
+        });
+
+        // An array of return values, including mixed return types, is returned
+        $this->assertEquals(
+            [ 'a', 2, ['c'] ],
+            $list->call()
+        );
     }
 
     public function testCallWithArgs()

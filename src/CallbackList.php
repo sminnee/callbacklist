@@ -79,10 +79,12 @@ class CallbackList
     /**
      * Call all the callbacks, passing the given arguments to each of them
      */
-    public function call(...$args): void
+    public function call(...$args): array
     {
+        $results = [];
         foreach ($this->callbacks as $callback) {
-            call_user_func_array($callback, $args);
+            $results[] = call_user_func_array($callback, $args);
         }
+        return $results;
     }
 }
