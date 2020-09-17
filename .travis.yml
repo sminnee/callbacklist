@@ -4,12 +4,16 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
+      env:
+       - COMPOSER_ARG=--prefer-lowest
     - php: 7.4
     - php: nightly
+      env:
+       - COMPOSER_ARG=--ignore-platform-reqs
 
 before_script:
   - composer validate
-  - composer install --prefer-source --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
+  - composer update $COMPOSER_ARG --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
 
 script:
   - vendor/bin/phpunit
