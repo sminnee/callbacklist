@@ -1,7 +1,7 @@
 sminnee/callbacklist
 ====================
 
-[![Build Status](https://api.travis-ci.com/sminnee/callbacklist.svg?branch=master)](https://travis-ci.com/sminnee/callbacklist)
+[![Build Status](https://api.travis-ci.org/sminnee/callbacklist.svg?branch=master)](https://travis-ci.org/sminnee/callbacklist)
 
 This micropackage provides a simple class for managing a list of callbacks.
 
