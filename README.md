@@ -16,13 +16,29 @@ $list = new CallbackList;
 $list->add(function() { "this will get called"; });
 $list->add(function() { "so will this"; });
 $list->call();
+
+// Or you can use it as a callable if you prefer
+$list();
 ```
 
 Arguments can be passed:
 
 ```php
 $list->add(function($greeting) { "$greeting, world!"; });
-$list->call("Hello");
+$list("Hello");
+```
+
+Return values are collated as an array
+
+```php
+use Sminnee\CallbackList\CallbackList;
+
+$list = new CallbackList;
+$list->add(function() { return "this will get returned"; });
+$list->add(function() { return "so will this"; });
+
+// ["this will get returned", "so will this"]
+var_dump($list());
 ```
 
 Existing callbacks can be manipulated:
