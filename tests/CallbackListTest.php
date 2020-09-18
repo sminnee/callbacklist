@@ -1,26 +1,26 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Sminnee\CallbackList\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Sminnee\CallbackList\CallbackList;
 
-class CallbackLisTest extends TestCase
+class CallbackListTest extends TestCase
 {
-    public function testCallWithoutReturnVales()
+    public function testCallWithoutReturnVales(): void
     {
         $list = new CallbackList();
 
         $log = [];
 
         // Confirming that voids are allowed even though returns are collected
-        $list->add(function () use (&$log): void {
+        $list->add(static function () use (&$log): void {
             $log[] = 'a';
         });
-        $list->add(function () use (&$log): void {
+        $list->add(static function () use (&$log): void {
             $log[] = 'b';
         });
-        $list->add(function () use (&$log): void {
+        $list->add(static function () use (&$log): void {
             $log[] = 'c';
         });
 
@@ -29,45 +29,47 @@ class CallbackLisTest extends TestCase
         $this->assertEquals(['a', 'b', 'c'], $log);
     }
 
-    public function testCallReturnValues()
+
+    public function testCallReturnValues(): void
     {
         $list = new CallbackList();
 
-        $list->add(function () use (&$log) {
+        $list->add(static function () {
             return 'a';
         });
-        $list->add(function () use (&$log) {
+        $list->add(static function () {
             return 2;
         });
-        $list->add(function () use (&$log) {
+        $list->add(static function () {
             return ['c'];
         });
 
         // An array of return values, including mixed return types, is returned
         $this->assertEquals(
-            [ 'a', 2, ['c'] ],
+            ['a', 2, ['c']],
             $list->call()
         );
 
         // Check invoke syntax
         $this->assertEquals(
-            [ 'a', 2, ['c'] ],
+            ['a', 2, ['c']],
             $list()
         );
     }
 
-    public function testCallWithArgs()
+
+    public function testCallWithArgs(): void
     {
         $list = new CallbackList();
 
         $log = [];
-        $list->add(function ($greeting, $punctuation = '') use (&$log) {
+        $list->add(static function ($greeting, $punctuation = '') use (&$log): void {
             $log[] = "$greeting, a$punctuation";
         });
-        $list->add(function ($greeting, $punctuation = '') use (&$log) {
+        $list->add(static function ($greeting, $punctuation = '') use (&$log): void {
             $log[] = "$greeting, b$punctuation";
         });
-        $list->add(function ($greeting, $punctuation = '') use (&$log) {
+        $list->add(static function ($greeting, $punctuation = '') use (&$log): void {
             $log[] = "$greeting, c$punctuation";
         });
 
@@ -89,12 +91,13 @@ class CallbackLisTest extends TestCase
         $this->assertEquals(['Hello, a!', 'Hello, b!', 'Hello, c!'], $log);
     }
 
-    public function testGetAll()
+
+    public function testGetAll(): void
     {
-        $a = function () {
+        $a = static function (): void {
             echo 'a';
         };
-        $b = function () {
+        $b = static function (): void {
             echo 'b';
         };
 
@@ -105,12 +108,13 @@ class CallbackLisTest extends TestCase
         $this->assertEquals([$a, $b], $list->getAll());
     }
 
-    public function testGetNamed()
+
+    public function testGetNamed(): void
     {
-        $a = function () {
+        $a = static function (): void {
             echo 'a';
         };
-        $b = function () {
+        $b = static function (): void {
             echo 'b';
         };
 
@@ -122,12 +126,13 @@ class CallbackLisTest extends TestCase
         $this->assertEquals($a, $list->get('b'));
     }
 
-    public function testRemoveNamed()
+
+    public function testRemoveNamed(): void
     {
-        $a = function () {
+        $a = static function (): void {
             echo 'a';
         };
-        $b = function () {
+        $b = static function (): void {
             echo 'b';
         };
 
@@ -139,15 +144,16 @@ class CallbackLisTest extends TestCase
         $this->assertEquals([$b], $list->getAll());
     }
 
-    public function testClear()
+
+    public function testClear(): void
     {
-        $a = function () {
+        $a = static function (): void {
             echo 'a';
         };
-        $b = function () {
+        $b = static function (): void {
             echo 'b';
         };
-        $c = function () {
+        $c = static function (): void {
             echo 'c';
         };
 
@@ -160,20 +166,22 @@ class CallbackLisTest extends TestCase
         $this->assertEquals([$c], $list->getAll());
     }
 
-    public function testCallbackIsACallable()
+
+    public function testCallbackIsACallable(): void
     {
         $list = new CallbackList();
 
-        $this->assertTrue(is_callable($list));
+        $this->assertTrue(\is_callable($list));
 
-        $test = function (callable $x) {
+        $test = static function (callable $x) {
             return $x();
         };
 
         $this->assertEquals($list(), $test($list));
     }
 
-    public function testEmptyList()
+
+    public function testEmptyList(): void
     {
         $list = new CallbackList();
         $this->assertEquals([], $list());
