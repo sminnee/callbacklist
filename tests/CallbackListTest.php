@@ -5,6 +5,7 @@ namespace Sminnee\CallbackList\Tests;
 use PHPUnit\Framework\TestCase;
 use Sminnee\CallbackList\CallbackList;
 
+/** @covers Sminnee\CallbackList\CallbackList */
 class CallbackListTest extends TestCase
 {
     public function testCallWithoutReturnVales(): void

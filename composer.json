@@ -31,6 +31,7 @@
         "lint": "vendor/bin/parallel-lint src/ tests/",
         "phpstan": "vendor/bin/phpstan analyse --level=8 -c tests\/phpstan.neon src/",
         "check": "composer lint && composer phpcs && composer phpstan",
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "phpdbg -qrr vendor/bin/phpunit tests --coverage-clover=coverage.xml '''' flush=all"
     }
 }
