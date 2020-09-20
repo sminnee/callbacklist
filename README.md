@@ -13,8 +13,6 @@
 [![GitHub Activity](https://img.shields.io/github/commit-activity/m/sminnee/callbacklist)](https://github.com/sminnee/callbacklist)
 [![GitHub Issues](https://img.shields.io/github/issues/sminnee/callbacklist)](https://github.com/sminnee/callbacklist/issues)
 
-![codecov.io](https://codecov.io/github/sminnee/callbacklist/branch.svg?branch=master)
-
 This micropackage provides a simple class for managing a list of callbacks.
 
 ## Usage
