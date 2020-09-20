@@ -1,7 +1,19 @@
-sminnee/callbacklist
-====================
+# sminnee/callbacklist
 
-[![Build Status](https://api.travis-ci.org/sminnee/callbacklist.svg?branch=master)](https://travis-ci.org/sminnee/callbacklist)
+[![Build Status](https://travis-ci.org/sminnee/callbacklist.svg?branch=master)](https://travis-ci.org/sminnee/callbacklist)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sminnee/callbacklist/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sminnee/callbacklist/?branch=master)
+[![codecov.io](https://codecov.io/github/sminnee/callbacklist/coverage.svg?branch=master)](https://codecov.io/github/sminnee/callbacklist?branch=master)
+
+[![Latest Stable Version](https://poser.pugx.org/sminnee/callbacklist/version)](https://packagist.org/packages/sminnee/callbacklist)
+[![License](https://poser.pugx.org/sminnee/callbacklist/license)](https://packagist.org/packages/sminnee/callbacklist)
+[![Monthly Downloads](https://poser.pugx.org/sminnee/callbacklist/d/monthly)](https://packagist.org/packages/sminnee/callbacklist)
+
+[![GitHub Code Size](https://img.shields.io/github/languages/code-size/sminnee/callbacklist)](https://github.com/sminnee/callbacklist)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/sminnee/callbacklist)](https://github.com/sminnee/callbacklist)
+[![GitHub Activity](https://img.shields.io/github/commit-activity/m/sminnee/callbacklist)](https://github.com/sminnee/callbacklist)
+[![GitHub Issues](https://img.shields.io/github/issues/sminnee/callbacklist)](https://github.com/sminnee/callbacklist/issues)
+
+![codecov.io](https://codecov.io/github/sminnee/callbacklist/branch.svg?branch=master)
 
 This micropackage provides a simple class for managing a list of callbacks.
 
